@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 
+
+
 export default function AddUser(props) {
     const [user, setUser] = useState({name: '', bio: ''});
 
@@ -8,19 +10,20 @@ export default function AddUser(props) {
     }
 
 
-    const handleSubmit = (evt, user) => {
-        props.addUser(evt, user);
+    const handleSubmit = (evt, UserId) => {
+        evt.preventDefault();
+        props.updateUser(evt, UserId);
     }
 
     return(
-        <div className="user-add-form">
-            <form onSubmit={e => handleSubmit(e, user)}>
+        <>
+            <form onSubmit={e => handleSubmit(e, user.id)}>
                 <label>Name</label>
                 <input type="text" name="name" placeholder="Name" value={user.name} onChange={e => handleChange(e)} />
                 <label>Bio</label>
                 <input type="text" name="bio" placeholder="short bio" value={user.bio} onChange={e => handleChange(e)} />
                 <button>Submit User</button>
             </form>
-        </div>
+        </>
     );
 }
